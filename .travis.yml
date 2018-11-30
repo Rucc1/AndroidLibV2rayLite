@@ -19,7 +19,8 @@ script:
 after_success:
 deploy:
   provider: releases
-  api_key: ${GH_TOKEN}
+  api_key:
+    secure:  "YadoA/dd4gXDcwPgbSw+ceOPdAvm3Paba+M2RxNOTEdD4sCaByRo7zloTgZ0Zr5gfRPNGrWLnn/u3wr/Cx9URLRRGKVQvhqT/VoxSmQhHD2/XsFN8ZLfeW1OSpUUwWfDuGt3iaaF/rketdT/te1Id6f8CMDiEctejBy8PfkCOqDfYFRBQ/G8J33DfkuEdqKHVwxj9LSEQCDn6n+IITwpNCkYWcQ7GL8z4RRdRA0SAIDA28fg1cpeUEWk5oiq1PqKvYqajp5k8wR3yeAN6TBiO4SWgH/ThpMUJfQy4IZE95Q/4cyCHwyEs8jkPn0haUMSLHFCs5makVcZQgr34h+E0VlRzXxJWGo8M3XH3F79C1h9Ayr8cHr8D2Ssh4u3eJiu5mwzM8Ju3Pe5/G/IZsr3u4iGknmi0a/6MCY/xDiaMk/FYM/m+109DvQzkhAB5XwtEqBToYbGlysneHdlSu380GYaFeIHbKBpttqnD84X1amobiCJ9mKt11AiUKjcEvRTYlHYBgnNQ5YglW0Fhdax8gKmt2T7aK9yfUCEjx5hEUOyC/hlfSKCST6xqQMFu7eUuMSMbXRsXN1Y2DKF793jdzi6HlZNYUhYeJtorb7CJVLjU/YeW32yfVnlUyVZeye1abywAFmJvxag2nykuowwX+gnzCU0SsLLGq69K5A7MpY="
   file:
     - libv2ray.aar
   skip_cleanup: true
