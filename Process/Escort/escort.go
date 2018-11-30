@@ -1,12 +1,12 @@
 package Escort
 
 import (
+	"log"
 	"os"
 	"os/exec"
 
-	"log"
+	"github.com/2dust/AndroidLibV2rayLite/CoreI"
 )
-import "github.com/2dust/AndroidLibV2rayLite/CoreI"
 
 func (v *Escorting) EscortRun(proc string, pt []string, forgiveable bool, tapfd int) {
 	log.Println(proc)
@@ -16,7 +16,7 @@ func (v *Escorting) EscortRun(proc string, pt []string, forgiveable bool, tapfd 
 		cmd := exec.Command(proc, pt...)
 		cmd.Stdout = os.Stdout
 		cmd.Stderr = os.Stderr
-		
+
 		if tapfd != 0 {
 			file := os.NewFile(uintptr(tapfd), "/dev/tap0")
 			var files []*os.File
@@ -24,7 +24,7 @@ func (v *Escorting) EscortRun(proc string, pt []string, forgiveable bool, tapfd 
 		}
 
 		err := cmd.Start()
-		
+
 		if err != nil {
 			log.Println(err)
 		}
@@ -70,8 +70,7 @@ func (v *Escorting) unforgivenessCloser() {
 		}
 	}
 	log.Println("unforgivenessCloser() quit")
-} 
-
+}
 
 func (v *Escorting) EscortingUPV() {
 	if v.escortProcess != nil {
