@@ -175,3 +175,33 @@ func (v *V2RayPoint) stopLoopW() {
 	v.Callbacks.OnEmitStatus(0, "Closed")
 
 }
+
+/*NetworkInterrupted inform us to restart the v2ray,
+closing dead connections.
+*/
+func (v *V2RayPoint) NetworkInterrupted() {
+	/*
+		Behavior Changed in API Ver 23
+		From now, we will defer the start for 3 sec,
+		any Interruption Message will be surpressed during this period
+	*/
+	go func() {
+		if v.status.IsRunning {
+			//Calc sleep time
+			defer func() {
+				if r := recover(); r != nil {
+					fmt.Println("Your device might not support atomic operation", r)
+				}
+			}()
+			succ := atomic.CompareAndSwapInt64(&v.interuptDeferto, 0, 1)
+			if succ {
+				v.status.Vpoint.Close()
+				time.Sleep(2 * time.Second)
+				v.status.Vpoint.Start()
+				atomic.StoreInt64(&v.interuptDeferto, 0)
+			} else {
+			}
+		}
+	}()
+}
+
