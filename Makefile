@@ -11,14 +11,14 @@ shippedBinary:
 	cd shippedBinarys; $(MAKE) shippedBinary
 
 fetchDep:
-	-go get  github.com/xiaokangwang/V2RayConfigureFileUtil
-	-cd $(GOPATH)/src/github.com/xiaokangwang/V2RayConfigureFileUtil;$(MAKE) all
-	go get  github.com/xiaokangwang/V2RayConfigureFileUtil
-	-go get  github.com/xiaokangwang/AndroidLibV2ray
-	-cd $(GOPATH)/src/github.com/xiaokangwang/libV2RayAuxiliaryURL; $(MAKE) all
-	-go get  github.com/xiaokangwang/AndroidLibV2ray
-	-cd $(GOPATH)/src/github.com/xiaokangwang/waVingOcean/configure; $(MAKE) pb
-	go get github.com/xiaokangwang/AndroidLibV2ray
+	-go get  github.com/Rucc1/V2RayConfigureFileUtil
+	-cd $(GOPATH)/src/github.com/Rucc1/V2RayConfigureFileUtil;$(MAKE) all
+	go get  github.com/Rucc1/V2RayConfigureFileUtil
+	-go get  https://github.com/Rucc1/AndroidLibV2rayLite
+	-cd $(GOPATH)/src/github.com/Rucc1/libV2RayAuxiliaryURL; $(MAKE) all
+	-go get  github.com/Rucc1/AndroidLibV2rayLited
+	-cd $(GOPATH)/src/github.com/Rucc1/waVingOcean/configure; $(MAKE) pb
+	go get https://github.com/Rucc1/AndroidLibV2rayLite
 
 ANDROID_HOME=$(HOME)/android-sdk-linux
 export ANDROID_HOME
