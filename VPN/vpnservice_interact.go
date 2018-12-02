@@ -1,17 +1,17 @@
 package VPN
 
 import (
-	"github.com/2dust/AndroidLibV2rayLite/CoreI"
-	"github.com/2dust/AndroidLibV2rayLite/Process/Escort"
+	"github.com/Rucc1/AndroidLibV2rayLite/CoreI"
+	"github.com/Rucc1/AndroidLibV2rayLite/Process/Escort"
 	"golang.org/x/sys/unix"
 	"v2ray.com/core/transport/internet"
 )
 
 type VPNSupport struct {
-	prepareddomain           preparedDomain
-	VpnSupportSet            V2RayVPNServiceSupportsSet
-	status                   *CoreI.Status
-	Estr                     *Escort.Escorting
+	prepareddomain preparedDomain
+	VpnSupportSet  V2RayVPNServiceSupportsSet
+	status         *CoreI.Status
+	Estr           *Escort.Escorting
 }
 
 type V2RayVPNServiceSupportsSet interface {
@@ -28,8 +28,8 @@ func (v *VPNSupport) SetStatus(st *CoreI.Status, estr *Escort.Escorting) {
 }
 
 func (v *VPNSupport) VpnSetup() {
-		v.prepareDomainName()
-		v.askSupportSetInit()
+	v.prepareDomainName()
+	v.askSupportSetInit()
 }
 
 /*VpnSupportReady VpnSupportReady*/
@@ -41,7 +41,7 @@ func (v *VPNSupport) VpnSupportReady() {
 	}
 }
 
-func (v *VPNSupport) VpnShutdown() {	
+func (v *VPNSupport) VpnShutdown() {
 	//if v.VpnSupportnodup {
 	err := unix.Close(v.VpnSupportSet.GetVPNFd())
 	println(err)
@@ -51,11 +51,11 @@ func (v *VPNSupport) VpnShutdown() {
 }
 
 func (v *VPNSupport) LoadLocalDns() {
-	if !v.status.VpnSupportnodup {	
+	if !v.status.VpnSupportnodup {
 		//v.Estr = Escort.NewEscort()
 		v.Estr.SetStatus(v.status)
 		v.Estr.EscortingUPV()
-		go v.Estr.EscortRun(v.status.GetApp("overture"), v.status.GetOvertureArgs(), false, 0)		
+		go v.Estr.EscortRun(v.status.GetApp("overture"), v.status.GetOvertureArgs(), false, 0)
 	}
 }
 
@@ -63,7 +63,7 @@ func (v *VPNSupport) startVPNRequire() {
 	//v.Estr = Escort.NewEscort()
 	v.Estr.SetStatus(v.status)
 	v.Estr.EscortingUPV()
-	go v.Estr.EscortRun(v.status.GetApp("tun2socks"), v.status.GetTun2socksArgs(v.VpnSupportSet.GetVPNFd()), false, v.VpnSupportSet.GetVPNFd())	
+	go v.Estr.EscortRun(v.status.GetApp("tun2socks"), v.status.GetTun2socksArgs(v.VpnSupportSet.GetVPNFd()), false, v.VpnSupportSet.GetVPNFd())
 }
 
 func (v *VPNSupport) askSupportSetInit() {
